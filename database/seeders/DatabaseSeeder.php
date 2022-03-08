@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\Appartement;
+use App\Models\Appartement;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 
@@ -19,19 +19,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     { 
             $faker = Faker::create('fr_FR');
-            for ($i = 0; $i < 10; $i++) {
+            for ($i = 0; $i <= 10; $i++) {
                 $appartement = new Appartement;
-                $appartement->title = $faker->text;
-                $appartement->description = $faker->text;
-                $appartement->floor = $faker->randomNumber;
-                $appartement->size = $faker->randomNumber;
-                $appartement->image = $faker->text;
-                $appartement->room = $faker->randomNumber;
-                $appartement->price = $faker->randomNumber;
-                $appartement->address = $faker->address;
-                $appartement->postcode = $faker->postcode;
-                $appartement->city = $faker->city;
-                //$appartement->save();
+                $appartement->title = $faker->text(10);
+                $appartement->description = $faker->text(200);
+                $appartement->floor = $faker->randomNumber();
+                $appartement->size = $faker->randomNumber();
+                $appartement->image = $faker->text(100);
+                $appartement->room = $faker->randomNumber();
+                $appartement->price = $faker->randomNumber();
+                $appartement->address = $faker->address(100);
+                $appartement->postcode = $faker->randomNumber();
+                $appartement->city = $faker->text(100);
+                $appartement->save();
             }
          
         // \App\Models\User::factory(10)->create();

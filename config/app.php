@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\NovaServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
 
     ],
 

@@ -16,46 +16,13 @@
         }
     },
     "paths": {
-        "/properties": {
-            "get": {
-                "tags": [
-                    "appartement"
-                ],
-                "summary": "Voir les appartements",
-                "description": "Voir tous les appartements",
-                "operationId": "getInventory",
-                "responses": {
-                    "200": {
-                        "description": "réussite",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "additionalProperties": {
-                                        "type": "integer",
-                                        "format": "int32"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "api_key": []
-                    }
-                ]
-            }
-        },
         "/property/add": {
             "put": {
                 "tags": [
                     "appartement"
                 ],
                 "summary": "Ajouter un nouvel appartement.",
-                "operationId": "updatePet",
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/Appartement"
-                },
+                "operationId": "addAppartement",
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"
@@ -66,27 +33,16 @@
                     "405": {
                         "description": "Validation exception"
                     }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:appartements",
-                            "read:appartements"
-                        ]
-                    }
-                ]
+                }
             }
         },
-        "/property/modify/{Id}": {
+        "/properties/modify/{Id}": {
             "post": {
                 "tags": [
                     "appartement"
                 ],
                 "summary": "Update an existing appartement.",
-                "operationId": "update",
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/Appartement"
-                },
+                "operationId": "updateAppartement",
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"
@@ -97,18 +53,10 @@
                     "405": {
                         "description": "Validation exception"
                     }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:appartements",
-                            "read:appartements"
-                        ]
-                    }
-                ]
+                }
             }
         },
-        "/property/delete/{Id}": {
+        "/properties/delete/{Id}": {
             "delete": {
                 "tags": [
                     "appartement"

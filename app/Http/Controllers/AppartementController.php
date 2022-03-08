@@ -9,28 +9,7 @@ use OpenApi\Attributes as OA;
 
 
 class AppartementController extends Controller
-{   /**
-     * @OA\Get(
-     *     path="/properties",
-     *     tags={"appartement"},
-     *     summary="Voir les appartements",
-     *     description="Voir tous les appartements",
-     *     operationId="getInventory",
-     *     @OA\Response(
-     *         response=200,
-     *         description="réussite",
-     *         @OA\JsonContent(
-     *             @OA\AdditionalProperties(
-     *                 type="integer",
-     *                 format="int32"
-     *             )
-     *         )
-     *     ),
-     *     security={
-     *         {"api_key": {}}
-     *     }
-     * )
-     */
+{ 
 
     public function all()
     {
@@ -53,7 +32,7 @@ class AppartementController extends Controller
      * @OA\Put(
      *     path="/property/add",
      *     tags={"appartement"},
-     *     operationId="updatePet",
+     *     operationId="addAppartement",
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied"
@@ -66,10 +45,7 @@ class AppartementController extends Controller
      *         response=405,
      *         description="Validation exception"
      *     ),
-     *     security={
-     *         {"petstore_auth": {"write:appartements", "read:appartements"}}
-     *     },
-     *     requestBody={"$ref": "#/components/requestBodies/Appartement"}
+     *    
      * )
      */
     public function add()
@@ -80,9 +56,9 @@ class AppartementController extends Controller
      * Update an existing appartement.
      *
      * @OA\Post(
-     *     path="/property/modify/{Id}",
+     *     path="/properties/modify/{Id}",
      *     tags={"appartement"},
-     *     operationId="update",
+     *     operationId="updateAppartement",
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied"
@@ -95,18 +71,15 @@ class AppartementController extends Controller
      *         response=405,
      *         description="Validation exception"
      *     ),
-     *     security={
-     *         {"petstore_auth": {"write:appartements", "read:appartements"}}
-     *     },
-     *     requestBody={"$ref": "#/components/requestBodies/Appartement"}
+  
      * )
      */
-    public function update()
+    public function modify()
     {
     }
     /**
      * @OA\Delete(
-     *     path="/property/delete/{Id}",
+     *     path="/properties/delete/{Id}",
      *     tags={"appartement"},
      *     summary="Deletes a appartement",
      *     operationId="delete",
@@ -141,7 +114,7 @@ class AppartementController extends Controller
      *     },
      * )
      */
-    public function deletePet()
+    public function delete()
     {
     }
 

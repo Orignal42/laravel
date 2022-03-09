@@ -37,6 +37,58 @@ class AppartementController extends Controller
      *         response=400,
      *         description="Invalid ID supplied"
      *     ),
+     * *  @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="id",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="title",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="description",
+ *                     type="string",
+ *                 ),
+ *                 @OA\Property(
+ *                     property="size",
+ *                     type="integer",
+ *                 ),
+ *                @OA\Property(
+ *                     property="floor",
+ *                     type="integer",
+ *                 ),
+ *                 @OA\Property(
+ *                     property="room",
+ *                     type="integer",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="image",
+ *                     type="string",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="price",
+ *                     type="integer",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="address",
+ *                     type="string",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="postcode",
+ *                     type="integer",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="city",
+ *                     type="string",
+ *                 ),
+ *              
+ *             )
+ *         )
+ *     ),
      *
      * 
      *     @OA\Parameter(
@@ -197,8 +249,72 @@ class AppartementController extends Controller
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied"
-     *     ),
+     *   ),
+   *  @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 @OA\Property(
+ *                     property="id",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="title",
+ *                     type="string"
+ *                 ),
+ *                 @OA\Property(
+ *                     property="description",
+ *                     type="string",
+ *                 ),
+ *                 @OA\Property(
+ *                     property="size",
+ *                     type="integer",
+ *                 ),
+ *                @OA\Property(
+ *                     property="floor",
+ *                     type="integer",
+ *                 ),
+ *                 @OA\Property(
+ *                     property="room",
+ *                     type="integer",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="image",
+ *                     type="string",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="price",
+ *                     type="integer",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="address",
+ *                     type="string",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="postcode",
+ *                     type="integer",
+ *                 ),
+ *                  @OA\Property(
+ *                     property="city",
+ *                     type="string",
+ *                 ),
+ *              
+ *             )
+ *         )
+ *     ),
+ *  
+ * 
      * 
+     * *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="Appartement id to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="varchar255"
+     *         ),
+     *     ),
      *     @OA\Parameter(
      *         name="title",
      *         in="path",

@@ -125,6 +125,50 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "size": {
+                                        "type": "integer"
+                                    },
+                                    "floor": {
+                                        "type": "integer"
+                                    },
+                                    "room": {
+                                        "type": "integer"
+                                    },
+                                    "image": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "integer"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "integer"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"
@@ -146,6 +190,16 @@
                 "summary": "Modifier un appartement existant.",
                 "operationId": "updateAppartement",
                 "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Appartement id to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "varchar255"
+                        }
+                    },
                     {
                         "name": "title",
                         "in": "path",
@@ -247,6 +301,50 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "size": {
+                                        "type": "integer"
+                                    },
+                                    "floor": {
+                                        "type": "integer"
+                                    },
+                                    "room": {
+                                        "type": "integer"
+                                    },
+                                    "image": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "integer"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "integer"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"

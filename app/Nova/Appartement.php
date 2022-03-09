@@ -5,7 +5,11 @@ namespace App\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
-
+use Acme\StripeInspector\StripeInspector;
+use Laravel\Nova\Fields\Gravatar;
+use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Number;
 class Appartement extends Resource
 {
     /**
@@ -20,7 +24,7 @@ class Appartement extends Resource
      *
      * @var string
      */
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
@@ -37,12 +41,47 @@ class Appartement extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function fields(Request $request)
-    {
-        return [
-            ID::make(__('ID'), 'id')->sortable(),
-        ];
-    }
+    public function fields(Request $request){
+    return [
+        ID::make()->sortable(),
+
+        Text::make('Title')
+            ->sortable()
+            ->rules('required', 'max:255'),
+
+        Text::make('description')
+            ->sortable()
+            ->rules('required','max:255'),
+        
+        Number::make('price')
+            ->sortable()
+            ->rules('required','max:255'),
+
+        Number::make('floor')
+            ->sortable()
+            ->rules('required','max:255'),
+    
+        Number::make('size')
+            ->sortable()
+            ->rules('required','max:255'),
+
+        Text::make('address')
+            ->sortable()
+            ->rules('required','max:255'),
+            
+ 
+        Number::make('postcode')
+            ->sortable()
+            ->rules('required','max:255'),
+
+        Text::make('city')
+            ->sortable()
+            ->rules('required','max:255'),
+        
+
+       
+    ];
+}
 
     /**
      * Get the cards available for the request.

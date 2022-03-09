@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -16,7 +19,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.7",
         "laravel/tinker": "^2.5",
-        "zircote/swagger-php": "^4.2"
+        "zircote/swagger-php": "^4.2",
+        "acme/stripe-inspector": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -69,6 +73,10 @@
         {
             "type": "composer",
             "url": "https://nova.laravel.com"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/StripeInspector"
         }
     ]
 }

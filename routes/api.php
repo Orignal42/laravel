@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/property/all', [AppartementController::class, 'all']);
 Route::get('/property/detail/{id}', [AppartementController::class, 'detail']);
-Route::PUT('/property/add',[AppartementController::class,'add']);
-Route::POST('/property/modify/{id}',[AppartementController::class,'modify']);
-Route::DELETE('/property/delete/{id}', [AppartementController::class,'delete']);
+Route::PUT('/nova/add',[AppartementController::class,'add']);
+Route::POST('/nova/modify/{id}',[AppartementController::class,'modify']);
+Route::DELETE('/nova/delete/{id}', [AppartementController::class,'delete']);
 // http://lara.test/api/property/all

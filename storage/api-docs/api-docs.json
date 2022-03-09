@@ -25,16 +25,6 @@
                 "operationId": "addAppartement",
                 "parameters": [
                     {
-                        "name": "Id",
-                        "in": "path",
-                        "description": "Appartement id to add",
-                        "required": true,
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    },
-                    {
                         "name": "title",
                         "in": "path",
                         "description": "Appartement title to add",
@@ -107,7 +97,7 @@
                     {
                         "name": "address",
                         "in": "path",
-                        "description": "Appartement image to add",
+                        "description": "Appartement address to add",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -117,7 +107,7 @@
                     {
                         "name": "postcode",
                         "in": "path",
-                        "description": "Appartement price to add",
+                        "description": "Appartement postcode to add",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -127,7 +117,7 @@
                     {
                         "name": "city",
                         "in": "path",
-                        "description": "Appartement image to add",
+                        "description": "Appartement city to add",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -229,7 +219,7 @@
                     {
                         "name": "address",
                         "in": "path",
-                        "description": "Appartement image to update",
+                        "description": "Appartement address to update",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -239,7 +229,7 @@
                     {
                         "name": "postcode",
                         "in": "path",
-                        "description": "Appartement price to update",
+                        "description": "Appartement postcode to update",
                         "required": true,
                         "schema": {
                             "type": "integer",
@@ -249,7 +239,7 @@
                     {
                         "name": "city",
                         "in": "path",
-                        "description": "Appartement image to update",
+                        "description": "Appartement city to update",
                         "required": true,
                         "schema": {
                             "type": "string",
@@ -279,14 +269,6 @@
                 "operationId": "delete",
                 "parameters": [
                     {
-                        "name": "api_key",
-                        "in": "header",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    },
-                    {
                         "name": "Id",
                         "in": "path",
                         "description": "Appartement id to delete",
@@ -304,15 +286,7 @@
                     "404": {
                         "description": "Appartement not found"
                     }
-                },
-                "security": [
-                    {
-                        "petstore_auth": [
-                            "write:appartements",
-                            "read:appartements"
-                        ]
-                    }
-                ]
+                }
             }
         }
     },

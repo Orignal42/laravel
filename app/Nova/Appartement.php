@@ -45,11 +45,15 @@ class Appartement extends Resource
     return [
         ID::make()->sortable(),
 
-        Text::make('Title')
+        Text::make('title')
             ->sortable()
             ->rules('required', 'max:255'),
 
         Text::make('description')
+            ->sortable()
+            ->rules('required','max:255'),
+        
+        Text::make('image')
             ->sortable()
             ->rules('required','max:255'),
         
@@ -58,6 +62,9 @@ class Appartement extends Resource
             ->rules('required','max:255'),
 
         Number::make('floor')
+            ->sortable()
+            ->rules('required','max:255'),
+        Number::make('room')
             ->sortable()
             ->rules('required','max:255'),
     
@@ -77,9 +84,7 @@ class Appartement extends Resource
         Text::make('city')
             ->sortable()
             ->rules('required','max:255'),
-        
-
-       
+               
     ];
 }
 

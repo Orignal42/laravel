@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Appartement;
 
 use OpenApi\Attributes as OA;
-
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class AppartementController extends Controller
-{ 
+{
 
     public function all()
     {
@@ -25,7 +25,7 @@ class AppartementController extends Controller
         return $properties;
     }
 
- 
+
     /**
      * Ajouter un nouvel appartement.
      *
@@ -36,6 +36,117 @@ class AppartementController extends Controller
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Parameter(
+     *         name="Id",
+     *         in="path",
+     *         description="Appartement id to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     * 
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="path",
+     *         description="Appartement title to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="description",
+     *         in="path",
+     *         description="Appartement description to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="size",
+     *         in="path",
+     *         description="Appartement size to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *            @OA\Parameter(
+     *         name="floor",
+     *         in="path",
+     *         description="Appartement floor to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="image",
+     *         in="path",
+     *         description="Appartement image to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *          @OA\Parameter(
+     *         name="room",
+     *         in="path",
+     *         description="Appartement room to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *               @OA\Parameter(
+     *         name="price",
+     *         in="path",
+     *         description="Appartement price to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *      *         @OA\Parameter(
+     *         name="address",
+     *         in="path",
+     *         description="Appartement image to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="postcode",
+     *         in="path",
+     *         description="Appartement price to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *            @OA\Parameter(
+     *         name="city",
+     *         in="path",
+     *         description="Appartement image to add",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -48,21 +159,156 @@ class AppartementController extends Controller
      *    
      * )
      */
-    public function add()
+    public function add(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required|max:100',
+            'description' => 'required|max:255',
+            'size' => 'required|min:2',
+            'floor' => 'required|min:0',
+            'image' => 'required|max:255',
+            'room'=>'required|min:1',
+            'price'=>'required|min:2',
+            'address'=>'required|max:255',
+            'postcode'=>'required|min:1',
+            'city'=>'required|max:255',
+            
+        ]);
+
+
+        $appartement = Appartement::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'size' => $request->size,
+            'floor' => $request->floor,
+            'image' => $request->image,
+            'room'=>$request->room,
+            'price' => $request->price,
+            'address' => $request->address,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+
+        ]);
+    
+        // On retourne les informations du nouvel appartement en JSON
+        return response()->json($appartement, 201);
     }
 
-   /**
-     * Update an existing appartement.
+
+    /**
+     * Modifier un appartement existant.
      *
      * @OA\Post(
-     *     path="/properties/modify/{Id}",
+     *     path="/property/modify/{id}",
      *     tags={"appartement"},
      *     operationId="updateAppartement",
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied"
      *     ),
+     * 
+     *     @OA\Parameter(
+     *         name="title",
+     *         in="path",
+     *         description="Appartement title to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="description",
+     *         in="path",
+     *         description="Appartement description to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="size",
+     *         in="path",
+     *         description="Appartement size to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *            @OA\Parameter(
+     *         name="floor",
+     *         in="path",
+     *         description="Appartement floor to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="image",
+     *         in="path",
+     *         description="Appartement image to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *          @OA\Parameter(
+     *         name="room",
+     *         in="path",
+     *         description="Appartement room to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *               @OA\Parameter(
+     *         name="price",
+     *         in="path",
+     *         description="Appartement price to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="address",
+     *         in="path",
+     *         description="Appartement image to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     *         @OA\Parameter(
+     *         name="postcode",
+     *         in="path",
+     *         description="Appartement price to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         ),
+     *     ),
+     *            @OA\Parameter(
+     *         name="city",
+     *         in="path",
+     *         description="Appartement image to update",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             format="varchar255"
+     *         ),
+     *     ),
+     * 
+     * 
      *     @OA\Response(
      *         response=404,
      *         description="Appartement not found"
@@ -74,14 +320,37 @@ class AppartementController extends Controller
   
      * )
      */
-    public function modify()
-    {
+    public function modify(Request $request, Appartement $appartement)
+
+
+    {    $this->validate($request, [
+        'title' => 'required|max:100',
+        'description' => 'required|max:255',
+
+ 
+    ]);
+
+    $appartement->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'size' => $request->size,
+            'floor' => $request->floor,
+            'image' => $request->image,
+            'room'=>$request->room,
+            'price' => $request->price,
+            'address' => $request->address,
+            'postcode' => $request->postcode,
+            'city' => $request->city,
+            
+
+        ]);
+        return response()->json();
     }
     /**
      * @OA\Delete(
-     *     path="/properties/delete/{Id}",
+     *     path="/property/delete/{id}",
      *     tags={"appartement"},
-     *     summary="Deletes a appartement",
+     *     summary="Supprimer un appartement",
      *     operationId="delete",
      *     @OA\Parameter(
      *         name="api_key",
@@ -114,9 +383,11 @@ class AppartementController extends Controller
      *     },
      * )
      */
-    public function delete()
+    public function delete(Appartement $appartement)
     {
+        $appartement->delete();
+
+        // On retourne la réponse JSON
+        return response()->json();
     }
-
-
 }

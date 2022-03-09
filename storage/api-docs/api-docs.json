@@ -23,6 +23,118 @@
                 ],
                 "summary": "Ajouter un nouvel appartement.",
                 "operationId": "addAppartement",
+                "parameters": [
+                    {
+                        "name": "Id",
+                        "in": "path",
+                        "description": "Appartement id to add",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Appartement title to add",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "Appartement description to add",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "Appartement size to add",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "floor",
+                        "in": "path",
+                        "description": "Appartement floor to add",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "image",
+                        "in": "path",
+                        "description": "Appartement image to add",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "room",
+                        "in": "path",
+                        "description": "Appartement room to add",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "path",
+                        "description": "Appartement price to add",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "address",
+                        "in": "path",
+                        "description": "Appartement image to add",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "postcode",
+                        "in": "path",
+                        "description": "Appartement price to add",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "description": "Appartement image to add",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"
@@ -36,13 +148,115 @@
                 }
             }
         },
-        "/properties/modify/{Id}": {
+        "/property/modify/{id}": {
             "post": {
                 "tags": [
                     "appartement"
                 ],
-                "summary": "Update an existing appartement.",
+                "summary": "Modifier un appartement existant.",
                 "operationId": "updateAppartement",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "path",
+                        "description": "Appartement title to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "description",
+                        "in": "path",
+                        "description": "Appartement description to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "size",
+                        "in": "path",
+                        "description": "Appartement size to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "floor",
+                        "in": "path",
+                        "description": "Appartement floor to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "image",
+                        "in": "path",
+                        "description": "Appartement image to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "room",
+                        "in": "path",
+                        "description": "Appartement room to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "path",
+                        "description": "Appartement price to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "address",
+                        "in": "path",
+                        "description": "Appartement image to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    },
+                    {
+                        "name": "postcode",
+                        "in": "path",
+                        "description": "Appartement price to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "description": "Appartement image to update",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "varchar255"
+                        }
+                    }
+                ],
                 "responses": {
                     "400": {
                         "description": "Invalid ID supplied"
@@ -56,12 +270,12 @@
                 }
             }
         },
-        "/properties/delete/{Id}": {
+        "/property/delete/{id}": {
             "delete": {
                 "tags": [
                     "appartement"
                 ],
-                "summary": "Deletes a appartement",
+                "summary": "Supprimer un appartement",
                 "operationId": "delete",
                 "parameters": [
                     {

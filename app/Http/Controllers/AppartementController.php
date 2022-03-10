@@ -3,10 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appartement;
-
-use OpenApi\Attributes as OA;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+
+
+/**
+ * @OA\Get(
+ *      path="/api/property/all",
+ *      operationId="getAllProperties",
+ *      tags={"Get"},
+
+ *      summary="Récupéré la liste des propriétés",
+ *      description="Retourne la liste complète de toute les propriétés.",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Opération réussis",
+ *          @OA\MediaType(
+ *           mediaType="application/json",
+ *      )
+ *      ),
+ *      @OA\Response(
+ *          response=401,
+ *          description="Non authentifié",
+ *      ),
+ *      @OA\Response(
+ *          response=403,
+ *          description="Accès refusé"
+ *      ),
+ * @OA\Response(
+ *      response=400,
+ *      description="Requête erroné"
+ *   ),
+ * @OA\Response(
+ *      response=404,
+ *      description="Page introuvable"
+ *   ),
+ *  )
+ */ 
 
 class AppartementController extends Controller
 {
@@ -18,209 +50,89 @@ class AppartementController extends Controller
         return $properties;
     }
 
+/**
+ * @OA\Get(
+ *      path="/api/property/detail/{id}",
+ *      operationId="getOneProperties",
+ *      tags={"Get"},
+
+ *      summary="Récupéré une des propriétés",
+ *      description="Retourne la liste complète de toute les propriétés.",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Opération réussis",
+ *          @OA\MediaType(
+ *           mediaType="application/json",
+ *      )
+ *      ),
+ *    @OA\Parameter(
+ *         description="Parameter with mutliple examples",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="number"),
+
+ *     ),
+ *      @OA\Response(
+ *          response=401,
+ *          description="Non authentifié",
+ *      ),
+ *      @OA\Response(
+ *          response=403,
+ *          description="Accès refusé"
+ *      ),
+ * @OA\Response(
+ *      response=400,
+ *      description="Requête erroné"
+ *   ),
+ * @OA\Response(
+ *      response=404,
+ *      description="Page introuvable"
+ *   ),
+ *  )
+ */ 
+
+
     public function detail($id)
     {
         $properties =  response()
-            ->json(Appartement::find($id));
+            ->json(Appartement::findOrFail($id));
         return $properties;
     }
 
 
-    /**
-     * Ajouter un nouvel appartement.
-     *
-     * @OA\Put(
-     *     path="/property/add",
-     *     tags={"appartement"},
-     *     operationId="addAppartement",
-     *     @OA\Response(
-     *         response=400,
-     *         description="Invalid ID supplied"
-     *     ),
-     * *  @OA\RequestBody(
- *         @OA\MediaType(
- *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
- *                     property="id",
- *                     type="string"
- *                 ),
- *                 @OA\Property(
- *                     property="title",
- *                     type="string"
- *                 ),
- *                 @OA\Property(
- *                     property="description",
- *                     type="string",
- *                 ),
- *                 @OA\Property(
- *                     property="size",
- *                     type="integer",
- *                 ),
- *                @OA\Property(
- *                     property="floor",
- *                     type="integer",
- *                 ),
- *                 @OA\Property(
- *                     property="room",
- *                     type="integer",
- *                 ),
- *                  @OA\Property(
- *                     property="image",
- *                     type="string",
- *                 ),
- *                  @OA\Property(
- *                     property="price",
- *                     type="integer",
- *                 ),
- *                  @OA\Property(
- *                     property="address",
- *                     type="string",
- *                 ),
- *                  @OA\Property(
- *                     property="postcode",
- *                     type="integer",
- *                 ),
- *                  @OA\Property(
- *                     property="city",
- *                     type="string",
- *                 ),
- *              
- *             )
- *         )
- *     ),
-     *
-     * 
-     *     @OA\Parameter(
-     *         name="title",
-     *         in="path",
-     *         description="Appartement title to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="description",
-     *         in="path",
-     *         description="Appartement description to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="size",
-     *         in="path",
-     *         description="Appartement size to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *            @OA\Parameter(
-     *         name="floor",
-     *         in="path",
-     *         description="Appartement floor to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="image",
-     *         in="path",
-     *         description="Appartement image to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *          @OA\Parameter(
-     *         name="room",
-     *         in="path",
-     *         description="Appartement room to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *               @OA\Parameter(
-     *         name="price",
-     *         in="path",
-     *         description="Appartement price to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *      *         @OA\Parameter(
-     *         name="address",
-     *         in="path",
-     *         description="Appartement address to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="postcode",
-     *         in="path",
-     *         description="Appartement postcode to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *            @OA\Parameter(
-     *         name="city",
-     *         in="path",
-     *         description="Appartement city to add",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *     @OA\Response(
-     *         response=404,
-     *         description="Appartement non trouver"
-     *     ),
-     *     @OA\Response(
-     *         response=405,
-     *         description="Validation exception"
-     *     ),
-     *    
-     * )
+/**
+     * @OA\Post(
+     *      path="/api/property/add",
+     *      summary="Ajouter une propriété",
+     *      operationId="AddOneProperty",
+     *      tags={"Create"},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="Proprietes",
+     *      @OA\JsonContent(
+     *          required={"title", "description", "image", "postcode", "city", "address", "room", "price", "size", "floor" },
+     *          @OA\Property(property="title", type="string"),
+     *          @OA\Property(property="description", type="string"),
+     *          @OA\Property(property="image", type="string"),
+     *          @OA\Property(property="address", type="string"),
+     *          @OA\Property(property="postcode", type="number"),
+     *          @OA\Property(property="city", type="string"),
+     *          @OA\Property(property="room", type="number"),
+     *          @OA\Property(property="price", type="float"),
+     *          @OA\Property(property="size", type="number"),
+     *          @OA\Property(property="floor", type="number"),
+     *      ),
+     *   ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success"
+     *      ),
+     *  )
      */
     public function add(Request $request)
     {
-        $this->validate($request, [
-
-            'title' => 'required|max:100',
-            'description' => 'required|max:255',
-            'size' => 'required|min:2',
-            'floor' => 'required|min:0',
-            'image' => 'required|max:255',
-            'room' => 'required|min:1',
-            'price' => 'required|min:2',
-            'address' => 'required|max:255',
-            'postcode' => 'required|min:1',
-            'city' => 'required|max:255',
-
-        ]);
-
-
-        $appartement = Appartement::create([
+            $appartement = Appartement::create([
             'title' => $request->title,
             'description' => $request->description,
             'size' => $request->size,
@@ -243,180 +155,42 @@ class AppartementController extends Controller
      * Modifier un appartement existant.
      *
      * @OA\Post(
-     *     path="/property/modify/{id}",
-     *     tags={"appartement"},
+     *     path="/api/property/modify/{id}",
+     *     tags={"Update"},
      *     operationId="updateAppartement",
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied"
      *   ),
-   *  @OA\RequestBody(
- *         @OA\MediaType(
- *             mediaType="application/json",
- *             @OA\Schema(
- *                 @OA\Property(
- *                     property="id",
- *                     type="string"
- *                 ),
- *                 @OA\Property(
- *                     property="title",
- *                     type="string"
- *                 ),
- *                 @OA\Property(
- *                     property="description",
- *                     type="string",
- *                 ),
- *                 @OA\Property(
- *                     property="size",
- *                     type="integer",
- *                 ),
- *                @OA\Property(
- *                     property="floor",
- *                     type="integer",
- *                 ),
- *                 @OA\Property(
- *                     property="room",
- *                     type="integer",
- *                 ),
- *                  @OA\Property(
- *                     property="image",
- *                     type="string",
- *                 ),
- *                  @OA\Property(
- *                     property="price",
- *                     type="integer",
- *                 ),
- *                  @OA\Property(
- *                     property="address",
- *                     type="string",
- *                 ),
- *                  @OA\Property(
- *                     property="postcode",
- *                     type="integer",
- *                 ),
- *                  @OA\Property(
- *                     property="city",
- *                     type="string",
- *                 ),
- *              
- *             )
- *         )
+     * 
+     *     @OA\Parameter(
+ *         description="Parameter with mutliple examples",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="number"),
+
  *     ),
+     * 
+   *      @OA\RequestBody(
+     *          required=true,
+     *          description="Proprietes",
+     *      @OA\JsonContent(
+     *          required={"title", "description", "image", "postcode", "city", "address", "room", "price", "size", "floor" },
+     *          @OA\Property(property="title", type="string"),
+     *          @OA\Property(property="description", type="string"),
+     *          @OA\Property(property="image", type="string"),
+     *          @OA\Property(property="address", type="string"),
+     *          @OA\Property(property="postcode", type="number"),
+     *          @OA\Property(property="city", type="string"),
+     *          @OA\Property(property="room", type="number"),
+     *          @OA\Property(property="price", type="float"),
+     *          @OA\Property(property="size", type="number"),
+     *          @OA\Property(property="floor", type="number"),
+     *      ),
+     *   ),
  *  
  * 
-     * 
-     * *     @OA\Parameter(
-     *         name="id",
-     *         in="path",
-     *         description="Appartement id to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *     @OA\Parameter(
-     *         name="title",
-     *         in="path",
-     *         description="Appartement title to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="description",
-     *         in="path",
-     *         description="Appartement description to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="size",
-     *         in="path",
-     *         description="Appartement size to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *            @OA\Parameter(
-     *         name="floor",
-     *         in="path",
-     *         description="Appartement floor to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="image",
-     *         in="path",
-     *         description="Appartement image to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *          @OA\Parameter(
-     *         name="room",
-     *         in="path",
-     *         description="Appartement room to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *               @OA\Parameter(
-     *         name="price",
-     *         in="path",
-     *         description="Appartement price to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="address",
-     *         in="path",
-     *         description="Appartement address to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     *         @OA\Parameter(
-     *         name="postcode",
-     *         in="path",
-     *         description="Appartement postcode to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
-     *            @OA\Parameter(
-     *         name="city",
-     *         in="path",
-     *         description="Appartement city to update",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="string",
-     *             format="varchar255"
-     *         ),
-     *     ),
-     * 
-     * 
      *     @OA\Response(
      *         response=404,
      *         description="Appartement not found"
@@ -428,20 +202,20 @@ class AppartementController extends Controller
   
      * )
      */
-    public function modify(Request $request, Appartement $appartement)
-
+    public function modify(Request $request, Appartement $appartement, $id)
 
     {
+    $appartement = Appartement::findOrFail($id);
         $this->validate($request, [
-            'title' => 'required|max:100',
+            'title' => 'required|max:255',
             'description' => 'required|max:255',
-            'size' => 'required|min:2',
-            'floor' => 'required|min:0',
+            'size' => 'required|max:255',
+            'floor' => 'required|max:255',
             'image' => 'required|max:255',
-            'room' => 'required|min:1',
-            'price' => 'required|min:2',
+            'room' => 'required|max:255',
+            'price' => 'required|max:255',
             'address' => 'required|max:255',
-            'postcode' => 'required|min:1',
+            'postcode' => 'required|max:255',
             'city' => 'required|max:255',
 
 
@@ -465,20 +239,24 @@ class AppartementController extends Controller
     }
     /**
      * @OA\Delete(
-     *     path="/property/delete/{id}",
-     *     tags={"appartement"},
+     *     path="/api/property/delete/{id}",
+     *     tags={"Delete"},
      *     summary="Supprimer un appartement",
      *     operationId="delete",
-     *     @OA\Parameter(
-     *         name="Id",
-     *         in="path",
-     *         description="Appartement id to delete",
-     *         required=true,
-     *         @OA\Schema(
-     *             type="integer",
-     *             format="int64"
-     *         ),
-     *     ),
+     *    *  @OA\RequestBody(
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *          )
+ *     ),
+ *  *     @OA\Parameter(
+ *         description="Parameter with mutliple examples",
+ *         in="path",
+ *         name="id",
+ *         required=true,
+ *         @OA\Schema(type="number"),
+
+ *     ),
+     *   
      *     @OA\Response(
      *         response=400,
      *         description="Invalid ID supplied",
@@ -490,11 +268,22 @@ class AppartementController extends Controller
      *   
      * )
      */
-    public function delete(Appartement $appartement)
+    public function delete(Appartement $appartement,$id)
     {
-        $appartement->delete();
-
-        // On retourne la réponse JSON
-        return response()->json();
+        try{
+            $appartement = Appartement::findOrFail($id);
+            $appartement->delete($id);
+            // On retourne la réponse JSON
+            return response()->json([
+                'id' => $id,
+                'appartement' => get_class($appartement),
+            ]);            
+        }catch (\Exception $e){
+            return response()->json([
+                'code' => $e->getCode(),
+                'message' => $e->getMessage(),
+                'line' => $e->getLine(),
+            ]);
+        }
     }
 }

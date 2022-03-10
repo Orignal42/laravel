@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4fbf1bb29315160c0e42993cb274489f",
+    "content-hash": "aeafa362b8cda2bc117a6034759b505d",
     "packages": [
         {
             "name": "acme/stripe-inspector",

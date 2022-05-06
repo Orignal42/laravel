@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Appartement;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @OA\Get(
@@ -132,6 +132,9 @@ class AppartementController extends Controller
      */
     public function add(Request $request)
     {
+          // http://127.0.0.1:8000/storage/image/1bz7voxO3K856W5xmE11w0alueyCilIEReMUKXao.png
+    //  Storage::disk('local')->put('image',$request->image);
+    $path = $request->file('image')->store('public/image');
             $appartement = Appartement::create([
             'title' => $request->title,
             'description' => $request->description,

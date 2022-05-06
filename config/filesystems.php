@@ -68,6 +68,7 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('http://127.0.0.1:8000/storage/image/') => storage_path('app/images'),
      
     ],
 
